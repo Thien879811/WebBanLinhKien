@@ -1,0 +1,23 @@
+header{
+    display: block;
+    height: 8.5rem;
+}
+.search{
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: auto;
+    width: 50%;
+}
+.header-top{
+    background-color: black;
+    height: 40px;
+}
+.btn1{
+    border: none;
+}
+.input-group1{
+    border-radius: 10px;
+}
+.form-control1 {
+    border-radius: 50px;
+}
