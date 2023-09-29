@@ -66,9 +66,15 @@ Route::middleware('checkadmin')->group(function(){
         //yêu cầu chi tiết sản phẩm cần thêm
         Route::get('/them-san-pham',[ProductController::class,'category'])->name('addproduct');
         Route::post('/them-san-pham',[ProductController::class,'addProduct']);
-
+        // thêm sản phẩm
         Route::get('/them-san-pham/them-chi-tiet',[ProductController::class,'getDetail'])->name('adddetail');
         Route::post('/them-san-pham/them-chi-tiet',[ProductController::class,'addDetail']);
+        //chỉnh sửa sản phảm
+        Route::get('/chinh-sua/{id}',[ProductController::class,'getProduct'])->name('edit_product');
+        Route::post('/chinh-sua/{id}',[ProductController::class,'editProduct']);
+        // xem đơn hàng
+        Route::get('/don-hang',[OrderController::class,'order'])->name('order');
+        Route::post('/chinh-sua/{id}',[ProductController::class,'editProduct']);
     });
 });
 

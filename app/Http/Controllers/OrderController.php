@@ -44,4 +44,7 @@ class OrderController extends Controller
         $product=Order::find($id_order)->getProductOrder()->select()->where('status',0)->get();
         return view('clients.order',compact('product'));
     }
+    public function order(){
+        return 'oke';
+    }
 }

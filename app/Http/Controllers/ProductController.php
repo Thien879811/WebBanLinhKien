@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Cart;
@@ -29,12 +30,7 @@ class ProductController extends Controller
         $loai=$this->product->category();
         return view('admin.add',compact('loai'));
     }
-    public function addProduct(Request $request){
-
-        $request->validate([
-            'image.*'=>'required|image|mimes:jpg, jpeg, png, bmp, gif, svg,webp|max:5120'
-        ]);
-
+    public function addProduct(ProductRequest $request){
         // $image=time().'.'.$request->image->extension();
         // $request->image->move(public_path('images'),$image);
 
@@ -48,9 +44,29 @@ class ProductController extends Controller
         return view('admin.add',compact('loai'));
     }
     public function addDetail(Request $request){
-        $id_product=1;
         $data=$request->all();
         unset($data['_token']);
         $this->product->addDetail($data);
     }
+    public function getProduct($id){
+        $product=Products::find($id);
+        if($product != null){
+            $type=$this->product->getFillabe($product->product_type);
+            $detail=$this->product->getDetail($id)->toArray();
+            return view('admin.edit_product',compact('detail','product','type'));
+        }
+        return redirect()->route('admin.page')->with('alert','Sản phẩm không tồn tại ');
+    }
+    public function editProduct(Request $request){
+        $id=$request->id;
+        $data=$request->all();
+        unset($data['_token']);
+        unset($data['id']);
+        $msg=$this->product->updateProduct($data,$id);
+        dd($msg);
+    }
+    public function detail($id){
+        return view('clients.detail');
+    }
+    
 }

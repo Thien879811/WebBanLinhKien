@@ -18,6 +18,7 @@ class HomeController extends Controller
         return view('clients.home',compact('data'));
     }
     public function pageAdmin(){
-        return view('admin.home');
+        $data=Products::all();
+        return view('admin.home',compact('data'));
     }
 }

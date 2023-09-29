@@ -11,7 +11,7 @@
 </head>
 <body>
     @include('clients.blocks.header')
-    <main class="row">
+    <main class="row container-lg m-auto">
         <aside class="col-2">
             @include('clients.blocks.sidebar')
         </aside>

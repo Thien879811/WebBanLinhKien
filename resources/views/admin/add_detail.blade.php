@@ -3,7 +3,7 @@
     <div class="container m-auto">
         @if(!empty($fill) && !empty($id_product))
         <form action="{{route("admin.adddetail")}}" method="post">
-            
+
             <input type="hidden" name="product_id" value="{{$id_product}}">
            
             @foreach ($fill as $item)

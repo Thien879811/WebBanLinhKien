@@ -47,6 +47,27 @@ class Products extends Model
     }
     public function addDetail(Array $data){
         $db=DB::table('products_detail')->insert([$data]);
-        dd($db);
+        return $db;
+    }
+    public function getDetail($id){
+        $db=DB::table('products_detail')
+        ->select()
+        ->where('product_id',$id)
+        ->get();
+        return $db;
+    }
+    public function detail(){
+        $data = DB::table('products')
+            ->join('products_type', 'products_type.id', '=', 'products.product_type')
+            ->join('products_detail', 'products.id', '=', 'products_detail.product_id')
+            ->get();
+        dd($data);
+    }
+    public function updateProduct(array $data,$id){
+        $data = DB::table('products')
+            ->join('products_detail', 'products.id', '=', 'products_detail.product_id')
+            ->where('product_id',$id)
+            ->update($data);
+        return $data;
     }
 }

@@ -21,3 +21,13 @@ header{
 .form-control1 {
     border-radius: 50px;
 }
+/* sidebar style */
+.sidebar-title{
+    display:flex;
+}
+.sidebar-title > h5{
+    float: right;
+}  
+.sidebar-title.i{
+    float :left;
+}
