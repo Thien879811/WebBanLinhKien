@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use App\Models\Order_Product;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 class Order extends Model
 {
     use HasFactory;
@@ -34,5 +35,18 @@ class Order extends Model
     public function getIDCart($user){
         $cart_id=User::find($user)->getOrder;
         return $cart_id->id;
+    }
+    public function getOrderUser(){
+        $order=DB::table('orders')
+        ->join('users','orders.user_id','=','users.id')
+        ->select(['orders.*','users.fullname','users.address','users.phone'])
+        ->get();
+        return($order);
+    }
+    public function getOrderProduct(){
+        $order=DB::table('order_products')
+        ->join('products','order_products.products_id','=','products.id')
+        ->get();
+        return($order);
     }
 }

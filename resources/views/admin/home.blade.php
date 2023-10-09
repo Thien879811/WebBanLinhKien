@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Quản lý
+@endsection
 @section('content')
     <div class="container row m-auto">
         {{--Kiem tra thong bao--}}

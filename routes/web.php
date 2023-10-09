@@ -55,7 +55,8 @@ Route::middleware('authmiddleware')->group(function(){
 
     Route::prefix('tai-khoan')->name('taikhoan.')->group(function(){
         Route::get('/',[UserController::class,'showUser']);
-        Route::get('cap-nhat',[UserController::class,'getUser'])->name('getuser');
+
+        Route::get('/cap-nhat',[UserController::class,'getUser'])->name('getuser');
         Route::post('/cap-nhat',[UserController::class,'updateUser'])->name('postuser');
     });
 });
@@ -74,7 +75,8 @@ Route::middleware('checkadmin')->group(function(){
         Route::post('/chinh-sua/{id}',[ProductController::class,'editProduct']);
         // xem đơn hàng
         Route::get('/don-hang',[OrderController::class,'order'])->name('order');
-        Route::post('/chinh-sua/{id}',[ProductController::class,'editProduct']);
+        //xem tài khoản người dùng
+        Route::get('/tai-khoan',[UserController::class,'user'])->name('user');
     });
 });
 

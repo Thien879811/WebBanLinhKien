@@ -7,7 +7,7 @@
             <a class="nav-link" href="{{route('admin.order')}}">Đơn hàng</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" href="#">Tài khoản người dùng</a>
+            <a class="nav-link" href="{{route('admin.user')}}">Tài khoản người dùng</a>
         </li>
     </ul>
 </header>

@@ -56,12 +56,13 @@ class Products extends Model
         ->get();
         return $db;
     }
-    public function detail(){
+    public function detail($id){
         $data = DB::table('products')
             ->join('products_type', 'products_type.id', '=', 'products.product_type')
             ->join('products_detail', 'products.id', '=', 'products_detail.product_id')
+            ->where('product_id',$id)
             ->get();
-        dd($data);
+        return $data;
     }
     public function updateProduct(array $data,$id){
         $data = DB::table('products')

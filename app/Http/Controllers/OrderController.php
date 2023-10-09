@@ -33,7 +33,7 @@ class OrderController extends Controller
             }
             return redirect()->route('showcart')->with('alert','Vui lòng chọn sản phẩm !');
         }
-        return redirect()->route('getuser')->with('alert','Vui lòng cập nhật thông tin trước khi mua hàng!');
+        return redirect()->route('taikhoan.getuser')->with('alert','Vui lòng cập nhật thông tin trước khi mua hàng!');
     }
 
 
@@ -45,6 +45,9 @@ class OrderController extends Controller
         return view('clients.order',compact('product'));
     }
     public function order(){
-        return 'oke';
+        $order=new Order;
+        $data=$order->getOrderUser();
+        $product=$order->getOrderProduct();
+        return view('admin.order',compact('data','product'));
     }
 }

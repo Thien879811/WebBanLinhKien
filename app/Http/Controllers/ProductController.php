@@ -66,7 +66,10 @@ class ProductController extends Controller
         dd($msg);
     }
     public function detail($id){
-        return view('clients.detail');
+        $product=Products::find($id);
+        $detail=$this->product->getDetail($id);
+        $fill=$this->product->getFillabe($product->product_type)->toArray();
+        return view('clients.detail',compact('product','detail','fill'));
     }
     
 }

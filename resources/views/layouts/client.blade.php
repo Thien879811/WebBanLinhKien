@@ -11,17 +11,10 @@
 </head>
 <body>
     @include('clients.blocks.header')
-    <main class="row container-lg m-auto">
-        <aside class="col-2">
-            @include('clients.blocks.sidebar')
-        </aside>
-        <section class="container col-10 row">
-            @yield('content')
-        </section>
+    <main class="container-lg m-auto mt-5">
+        @yield('content')
     </main>
-    <footer>
-
-    </footer>
+    @include('clients.blocks.footer')
     <script type="text/javascript" src="{{asset('assets/clients/js/all.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/clients/js/bootstrap.min.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

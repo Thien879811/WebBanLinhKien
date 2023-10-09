@@ -41,4 +41,8 @@ class UserController extends Controller
         $user_data=User::find($user);
         return view('clients.info_user',compact('user_data'));
     }
+    public function user(){
+        $data=User::select('fullname','email','is_admin')->get();
+        return view('admin.user',compact('data'));
+    }
 }
