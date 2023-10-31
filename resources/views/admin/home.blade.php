@@ -3,7 +3,7 @@
     Quản lý
 @endsection
 @section('content')
-    <div class="container row m-auto">
+    <div class="container row m-auto mt-5">
         {{--Kiem tra thong bao--}}
     @if(session('alert'))
     <div class="alert alert-info">
@@ -13,7 +13,7 @@
     {{--Kiem tra du lieu--}}
     @if(!empty($data))
         @foreach($data as $key)
-            <div class="card col-2" style="width: 12rem; height:30rem">
+            <div class="card col-3">
                 <img src="{{asset('images')}}/{{$key->images}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{$key->product_name}}</h5>

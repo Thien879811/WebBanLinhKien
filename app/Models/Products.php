@@ -71,4 +71,10 @@ class Products extends Model
             ->update($data);
         return $data;
     }
+    public function search($data){
+        $data = DB::table('products')
+            ->where('product_name','like',"%".$data."%")
+            ->get();
+        return $data;
+    }
 }

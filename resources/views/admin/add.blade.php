@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-<div class="container m-auto">
+<div class="container d-flex justify-conten-center">
+   <div class="add-group">
     @if (!empty($loai))
     <h2>Thông tin sản phẩm</h2>
         <form action="{{route('admin.addproduct')}}" method="post" enctype="multipart/form-data">
@@ -29,5 +30,6 @@
             <button type="submit" class='btn btn-primary mt-3'>Thêm chi tiết</button>
         </form>
     @endif
+   </div>
 </div>
 @endsection

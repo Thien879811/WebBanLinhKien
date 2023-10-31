@@ -19,6 +19,9 @@ class CartController extends Controller
         ->product()
         ->select()
         ->get();
+        if($product->count()==0){
+            return redirect()->route("home")->with("alert","Bạn chưa chọn sản phẩm");
+        }
         return view('clients.cart',compact('product'));
     }
 

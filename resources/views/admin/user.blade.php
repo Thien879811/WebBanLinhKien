@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container mt-5">
-        <nav>
+        <nav style="width: 600px">
             <div class=" position-relative search">
                 <div class="align-items-center">
                     <div class="input-group input-group1 mt-2 bg-light">

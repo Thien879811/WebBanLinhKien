@@ -31,10 +31,9 @@ class ProductController extends Controller
         return view('admin.add',compact('loai'));
     }
     public function addProduct(ProductRequest $request){
-        // $image=time().'.'.$request->image->extension();
-        // $request->image->move(public_path('images'),$image);
-
-        // $id_product=$this->product->addProduct($request->product_name,$request->product_type,$request->price,$image);
+        $image=time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'),$image);
+        $id_product=$this->product->addProduct($request->product_name,$request->product_type,$request->price,$image);
         $id_product=1;
         $fill=$this->product->getFillabe($request->product_type);
         return view('admin.add_detail',compact('fill','id_product'));
@@ -63,7 +62,7 @@ class ProductController extends Controller
         unset($data['_token']);
         unset($data['id']);
         $msg=$this->product->updateProduct($data,$id);
-        dd($msg);
+        return redirect()->route('admin.page')->with('alert','Chỉnh sửa thành công');
     }
     public function detail($id){
         $product=Products::find($id);
@@ -71,5 +70,9 @@ class ProductController extends Controller
         $fill=$this->product->getFillabe($product->product_type)->toArray();
         return view('clients.detail',compact('product','detail','fill'));
     }
-    
+    public function searchProduct(Request $request){
+        $search=$request->search;
+        $data =$this->product->search($search);
+        return view('clients.home',compact('data'));
+    }
 }

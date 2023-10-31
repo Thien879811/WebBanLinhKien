@@ -1,12 +1,7 @@
+/* header style */
 header{
     display: block;
     height: 8.5rem;
-}
-.search{
-    padding-top: 20px;
-    border-radius: 20px;
-    margin: auto;
-    width: 50%;
 }
 .header-top{
     background-color: black;
@@ -15,12 +10,18 @@ header{
 .btn1{
     border: none;
 }
-.input-group1{
-    border-radius: 10px;
+/* search */
+
+.search{
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: auto;
 }
-.form-control1 {
-    border-radius: 50px;
+
+.search_group{
+    width: 50%;
 }
+
 /* sidebar style */
 .sidebar-title{
     display:flex;
@@ -30,4 +31,100 @@ header{
 }  
 .sidebar-title.i{
     float :left;
+}
+
+
+/* cart */
+.cart{
+   margin-right: 2rem;
+}
+.cart_icon{
+    font-size: 2rem;
+    margin-right: 0.5rem;
+}
+.cart_text{
+    width: 10%;
+    font-size: 1rem;
+}
+
+/* user */
+
+.user_icon{
+    color: aliceblue;
+    font-size: 2rem;
+}
+.btn_user{
+    border: 2px white;
+}
+/* logo */
+.logo_img{
+    width: 5rem;
+    margin-right: 2rem;
+}
+.logo_text{
+    font-size: 2rem;
+    color: aliceblue;
+}
+
+.dropdown-item{
+    margin-bottom: 20px;
+}
+.dropdown-menu{
+    padding: 10px;
+}
+/* lọc */
+.select_group{
+    display: flex;
+    width: 100px;
+}
+
+
+
+/* san pham */
+
+.card{
+    width: 100%;
+}
+
+/* dang nhap */
+
+.login-bg{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.login-group{
+    width: 30%;
+    margin-top: 2rem;
+}
+.login-top{
+    margin-top: 2rem;
+}
+.login-top h1{
+    display: flex;
+    justify-content: center;
+}
+.login-bottom{
+    margin-top: 20px;
+}
+
+/* trang thong tin user */
+.info-group{
+    width: 600px;
+}
+.avt-block{
+    display: flex;
+    justify-content: center;
+}
+.avt{
+    font-size: 10rem;
+}
+.name h3{
+    margin-top: 20px;
+    text-align: center;
+}
+@media only screen and (max-width: 600px) {
+
 }

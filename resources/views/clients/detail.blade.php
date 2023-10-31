@@ -1,19 +1,54 @@
 @extends('layouts.client')
 @section('content')
     @if (!empty($product))
-        <section class="container mx-auto row mt-5">
-            <div class="col-7">
-                <h2>
-                    {{$product->product_name}}
-                </h2>
-                <div>
-                    <img src="{{asset('images')}}/{{$product->images}}" alt="">
-                </div>
+    <h2>Chi tiết sản phẩm</h2>
+    <div class="container mt-4">
+        <div id="thongbao" class="alert alert-danger d-none face" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="container-fliud">
+                <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
+                    action="/php/twig/frontend/giohang/themvaogiohang">
+                    <div class="wrapper row">
+                        <div class="col-md-6">
+                            <img src="{{asset('images')}}/{{$product->images}}" style="width: 300px;">
+                        </div>
+                        <div class="details col-md-6">
+                            <h3 class="product-title"> {{$product->product_name}}</h3>
+                            <div class="rating">
+                                <div class="stars">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                            <h4 class="price">Giá hiện tại: <span>{{$product->price}}</span></h4>
+                            <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
+                                <strong>Uy
+                                    tín</strong>!</p>
+                            <div class="form-group">
+                                <label for="soluong">Số lượng đặt mua:</label>
+                                <input style="width:100px;" type="number" class="form-control" id="soluong" name="soluong">
+                            </div>
+                            <div class="action">
+                                <a class="add-to-cart btn btn-primary mt-3" id="btnThemVaoGioHang" href="{{route('addcart',$product->id)}}">Thêm vào giỏ hàng</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
             </div>
-            <div class="col-4">
-                <div class="mx-auto">
-                    <h4>Thông số kĩ thuật</h4>
-                    @foreach ($fill as $items)
+        </div>
+        <div class="mt-5">
+            <div class="container-fluid">
+                <h3>Thông tin chi tiết về Sản phẩm</h3>
+                @foreach ($fill as $items)
                         @php
                             $fill=$items->fillable
                         @endphp
@@ -25,15 +60,9 @@
                                 </div>
                             @endif
                         @endforeach
-                    @endforeach
-                </div>
-            </div> 
-        </section>
-        <section class="row">
-            <div class="col">{{$product->price}}</div>
-            <div class="col">
-                <button class="btn">Mua ngay</button>
+                @endforeach
             </div>
-        </section>
+        </div>
+    </div>
     @endif
 @endsection

@@ -29,6 +29,8 @@ use App\Http\Middleware\AuthMiddleware;
 // Trang chủ
 Route::prefix('/')->name('home')->group(function(){
     Route::get('/',[HomeController::class,'index']);
+    // tìm kiếm
+    Route::post('/',[ProductController::class,'searchProduct']);
 });
 
 //Chi tiết sản phảm
@@ -88,4 +90,5 @@ Route::prefix('/dang-nhap')->name('login')->group(function(){
 
 //thoát tài khoản
 Route::get('/dang-xuat',[LogoutController::class,'getLogout'])->name('logout');
+
 
