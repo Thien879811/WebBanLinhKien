@@ -3,19 +3,28 @@
     Đơn hàng
 @endsection
 @section('content')
+
     <div class="container mt-5">
-        <nav style="width: 600px">
-            <div class=" position-relative search">
-                <div class="align-items-center">
-                    <div class="input-group input-group1 mt-2 bg-light">
-                        <input type="search" class="form-control form-control1" placeholder="Nhập từ khóa cần tìm"
-                            aria-label="Search" aria-describedby="button-addon2" >
-                        <button class="btn btn1 btn-dark" type="button" id="button-addon2" >
-                            <a class="text-decoration-none text-light" href="#"><i class="fa fa-search "></i></a>
-                        </button>
+        @if(session('alert'))
+            <div class="alert alert-info">
+            {{session('alert')}}
+            </div>
+        @endif
+        <nav style="width: 600px;float:right;">
+            <form action="" method="post">
+                <div class=" position-relative search">
+                    <div class="align-items-center">
+                        <div class="input-group input-group1 mt-2 bg-light">
+                            <input name='search' type="search" class="form-control form-control1" placeholder="Nhập từ khóa cần tìm"
+                                aria-label="Search" aria-describedby="button-addon2" >
+                                @csrf
+                            <button type='submit' class="btn btn1 btn-dark" type="button" id="button-addon2" >
+                                <a class="text-decoration-none text-light" href="#"><i class="fa fa-search "></i></a>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </nav>
         <table class="table">
             <thead>
@@ -26,7 +35,7 @@
                     <th scope="col">Số lượng</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Tổng</th>
-                    <th scope="col">Ghi chú</th>
+                    <th scope="col">Trạng thái</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +53,7 @@
                     <th>
                         <ul>
                             @foreach ($product as $item => $key)
-                            @if ($value->user_id == $key->order_id)
+                            @if ($value->id == $key->order_id)
                                 <li>
                                     {{$key->product_name}}
                                 </li>
@@ -55,7 +64,7 @@
                     <th>
                         <ul>
                             @foreach ($product as $item => $key)
-                            @if ($value->user_id == $key->order_id)
+                            @if ($value->id == $key->order_id)
                                 <li>
                                     {{$key->quantity}}
                                 </li>
@@ -66,7 +75,7 @@
                     <th>
                         <ul>
                             @foreach ($product as $item => $key)
-                            @if ($value->user_id == $key->order_id)
+                            @if ($value->id == $key->order_id)
                                 <li>
                                     {{$key->price}}
                                 </li>
@@ -81,7 +90,14 @@
                         {{$sum}}
                     </th>
                     <th>
-                        <a href="">in</a>
+                        @if ($value->status == 0)
+                            <a>Chưa giao</a>
+                            <a  class='btn btn-primary' href="{{route('admin.update',$value->id)}}"> Cập nhật</a>
+                            <a  class='btn' href="{{route('admin.delete',$value->id)}}">Xóa</a>
+                        @else
+                            <a>Đã giao</a>
+                            <a  class='btn' href="{{route('admin.delete',$value->id)}}">Xóa</a>
+                        @endif
                     </th>
                 </tr>
                 @endforeach

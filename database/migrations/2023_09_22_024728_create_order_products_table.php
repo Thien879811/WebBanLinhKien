@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('products_id');
             $table->integer('quantity');
             $table->bigInteger('total')->nullable();
-            $table->integer('status')->default('0');
             $table->timestamps();
         });
     }

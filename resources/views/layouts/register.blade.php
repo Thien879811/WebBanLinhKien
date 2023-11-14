@@ -37,7 +37,7 @@
 						  <input required="true" type="password" class="form-control" id="confirmation_pwd">
 						</div>
 						@csrf
-						<button class="btn btn-success mt-3" type='submit'>Register</button>
+						<button class="btn btn-success mt-3" type='submit'>Đăng ký</button>
 					</div>
 				</div>
 				</form>

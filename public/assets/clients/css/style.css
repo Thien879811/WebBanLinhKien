@@ -112,7 +112,8 @@ header{
 
 /* trang thong tin user */
 .info-group{
-    width: 600px;
+    width: 500px;
+    padding: 20px;
 }
 .avt-block{
     display: flex;
@@ -124,6 +125,12 @@ header{
 .name h3{
     margin-top: 20px;
     text-align: center;
+}
+.info_center h4{
+    text-align: center;
+}
+.info_center .info{
+    margin-left: 120px;
 }
 @media only screen and (max-width: 600px) {
 

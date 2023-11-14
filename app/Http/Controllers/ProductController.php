@@ -46,6 +46,7 @@ class ProductController extends Controller
         $data=$request->all();
         unset($data['_token']);
         $this->product->addDetail($data);
+        return redirect()->route('home')->with('alert','Thêm sản phẩm thành công');
     }
     public function getProduct($id){
         $product=Products::find($id);
@@ -73,6 +74,8 @@ class ProductController extends Controller
     public function searchProduct(Request $request){
         $search=$request->search;
         $data =$this->product->search($search);
-        return view('clients.home',compact('data'));
+        $loai= $this->product->category();
+        return view('clients.home',compact('data','loai'));
     }
+
 }

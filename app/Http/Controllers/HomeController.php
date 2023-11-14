@@ -15,7 +15,8 @@ class HomeController extends Controller
     }
     public function index(Request $request){
         $data=Products::all();
-        return view('clients.home',compact('data'));
+        $loai=$this->product->category();
+        return view('clients.home',compact('data','loai'));
     }
     public function pageAdmin(){
         $data=Products::all();

@@ -33,10 +33,10 @@ Route::prefix('/')->name('home')->group(function(){
     Route::post('/',[ProductController::class,'searchProduct']);
 });
 
-//Chi tiết sản phảm
+//Chi tiết sản phẩm
 Route::get('chi-tiet/{id}',[ProductController::class,'detail'])->name('detail');
 
-//Đăng ký tài khoảm
+//Đăng ký tài khoản
 Route::prefix('/dang-ky')->name('register')->group(function(){
     Route::get('/',[RegisterController::class,'getRegister']);
     Route::post('/',[RegisterController::class,'postRegister']);
@@ -52,7 +52,8 @@ Route::middleware('authmiddleware')->group(function(){
     Route::get('gio-hang/giam/{id}',[CartController::class,'reduce'])->name('giam');
 
     Route::get('mua-hang',[OrderController::class,'getOrder']);
-    Route::get('xem-don-hang',[OrderController::class,'showOrder'])->name('showorder');
+    // Route::get('xem-don-hang',[OrderController::class,'showOrder'])->name('showorder');
+    Route::get('xem-don-hang',[OrderController::class,'getOrderUser'])->name('showorder');
     Route::post('mua-hang',[OrderController::class,'addOrder'])->name('mua-hang');
 
     Route::prefix('tai-khoan')->name('taikhoan.')->group(function(){
@@ -72,13 +73,28 @@ Route::middleware('checkadmin')->group(function(){
         // thêm sản phẩm
         Route::get('/them-san-pham/them-chi-tiet',[ProductController::class,'getDetail'])->name('adddetail');
         Route::post('/them-san-pham/them-chi-tiet',[ProductController::class,'addDetail']);
-        //chỉnh sửa sản phảm
+        //chỉnh sửa sản phẩm
         Route::get('/chinh-sua/{id}',[ProductController::class,'getProduct'])->name('edit_product');
         Route::post('/chinh-sua/{id}',[ProductController::class,'editProduct']);
+
         // xem đơn hàng
         Route::get('/don-hang',[OrderController::class,'order'])->name('order');
+        //tìm kiếm đơn 
+        Route::post('/don-hang',[OrderController::class,'search_order']);
+        //xóa đơn hàng
+        Route::get('/xoa/{id}',[OrderController::class,'deleteOrder'])->name('delete');
+        //cập nhật trạng thái
+        Route::get('/cap-nhat/{id}',[OrderController::class,'updateOrder'])->name('update');
+        
         //xem tài khoản người dùng
         Route::get('/tai-khoan',[UserController::class,'user'])->name('user');
+        //cấp quyền
+        Route::get('/cap-quyen/{id}',[UserController::class,'is_admin'])->name('is_admin');
+        //thu hồi
+        Route::get('/thu-quyen/{id}',[UserController::class,'not_admin'])->name('not_admin');
+        //tìm kiếm người dùng
+        Route::post('/tai-khoan',[UserController::class,'search_user']);
+
     });
 });
 

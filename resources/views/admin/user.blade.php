@@ -4,18 +4,21 @@
 @endsection
 @section('content')
     <div class="container mt-5">
-        <nav style="width: 600px">
-            <div class=" position-relative search">
-                <div class="align-items-center">
-                    <div class="input-group input-group1 mt-2 bg-light">
-                        <input type="search" class="form-control form-control1" placeholder="Nhập từ khóa cần tìm"
-                            aria-label="Search" aria-describedby="button-addon2" >
-                        <button class="btn btn1 btn-dark" type="button" id="button-addon2" >
-                            <a class="text-decoration-none text-light" href="#"><i class="fa fa-search "></i></a>
-                        </button>
+        <nav style="width: 600px;float:right;">
+            <form action="" method="post">
+                <div class=" position-relative search">
+                    <div class="align-items-center">
+                        <div class="input-group input-group1 mt-2 bg-light">
+                            <input name='search' type="search" class="form-control form-control1" placeholder="Nhập từ khóa cần tìm"
+                                aria-label="Search" aria-describedby="button-addon2" >
+                                @csrf
+                            <button type='submit' class="btn btn1 btn-dark" type="button" id="button-addon2" >
+                                <a class="text-decoration-none text-light" href="#"><i class="fa fa-search "></i></a>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </nav>
         <table class="table">
             <thead>
@@ -39,12 +42,12 @@
                     @if ($value->is_admin==1)
                         <th scope="col">Người dùng quản trị</th>
                         <th scope="col">
-                            <a class="text-decoration-none" href="#">Thu hồi quyền</a>
+                            <a class="text-decoration-none" href="{{route('admin.not_admin',$value->id)}}">Thu hồi quyền</a>
                         </th>
                     @else
                         <th scope="col">Người dùng thông thường</th>
                         <th scope="col">
-                            <a class="text-decoration-none" href="#">Cấp quyền</a>
+                            <a class="text-decoration-none" href="{{route('admin.is_admin',$value->id)}}">Cấp quyền</a>
                         </th>
                     @endif
                     

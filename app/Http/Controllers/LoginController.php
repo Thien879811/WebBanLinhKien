@@ -20,8 +20,7 @@ class LoginController extends Controller
             $fullname=Auth::user()->fullname;
             $request->session()->put('fullname',$fullname);
             $admin=Auth::user()->is_admin;
-                if( $admin == 1 )
-                {
+                if( $admin == 1 ){
                 $request->session()->put('admin',$fullname);
                 }
             return redirect()->route('home')->with('alert','Đăng nhập thành công'); ;

@@ -4,6 +4,20 @@
     Trang chủ
 @endsection
 @section('content')
+    @if (!empty($loai))
+        <h3>Chọn linh kiện</h3>
+        <div class="d-flex">
+                @foreach ($loai as $item)
+                <form action="{{route('home')}}" method="post">
+                    <input type="hidden" name='search' value="{{$item->name}}">
+                    @csrf
+                    <button type='submit' class="border border-dark p-2 m-2 rounded btn">
+                        {{$item->name}}
+                    </button>
+                </form>
+                @endforeach
+        </div>
+    @endif
     <h2>Sản phẩm</h2>
     <div class="row">
         {{--Kiem tra thong bao--}}
@@ -26,6 +40,10 @@
                 </div>
             </div>
             @endforeach
+        @else
+            <div class="alert alert-danger">
+                Không tìm thấy!
+            </div>
         @endif
     </div>
 @endsection
@@ -33,6 +51,12 @@
     <style>
         .card{
             width: 30rem
+        }
+        .card-title{
+            height: 80px;
+        }
+        .card img{
+            height: 350px;
         }
     </style>
 @endsection

@@ -9,22 +9,37 @@
 @if (!empty($product))
     <div class="container">
         <form action="{{route('mua-hang')}}" method="post">
-            Tất cả
-            <input type="checkbox" id="checkboxMain" value="">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tất cả <input type="checkbox" id="checkboxMain" value=""></th>
+                        <th scope="col"></th>
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col"></th>
+                        <th scope="col">Giá</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                    </tr>
+                </thead>
+            </table>
             @foreach ($product as $item => $key)
             <div class="d-flex container row border-1 bg-info mt-2">
+
                 <div class='col-1 m-auto'>
                     <input type="checkbox" name="selceted_add[]" class="checkbox" value="{{$key->id}}">
                 </div>
+
                 <div class="col-1 m-auto ">
                     <img src="{{asset('images')}}/{{$key->images}}" alt="" sizes="" srcset="" class="img-thumbnail">
                 </div>
+
                 <div class="col-4 m-auto">{{$key->product_name}}</div>
                 <input class="price" id="price" type="hidden"value="{{$key->price}}">
+
                 <div class="col-1 m-auto">{{$key->price}}</div>
-    
-                <div class="col-1 m-auto">{{$key->price}}</div>
-    
+
                 <div class="buttons_added col-2 m-auto">
     
                     <button class="plus is-form d-qty">
@@ -38,9 +53,13 @@
                     </button>
                 
                 </div>
+
+                <div class="col-1 m-auto">{{$key->price * $key->quantity}}</div>
+
                 <div class="col-2 m-auto">
                     <a href="{{route('deletecart',$key->products_id)}}">Xóa</a>
                 </div>
+
             </div>
             @endforeach
             @csrf

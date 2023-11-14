@@ -33,3 +33,8 @@
    </div>
 </div>
 @endsection
+<style>
+    .btn{
+        float: right;
+    }
+</style>

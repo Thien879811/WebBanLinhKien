@@ -24,7 +24,7 @@ class Order extends Model
             $cart_id=$this->getIDCart($id_user);
             $data=new Order_Product;
             $data->createOrderProduct($cart_id,$product_id,$quantity,$total);
-        }else{
+        }else{ 
             $this->user_id=$id_user;
             $this->save();
             $data=new Order_Product;
@@ -48,5 +48,39 @@ class Order extends Model
         ->join('products','order_products.products_id','=','products.id')
         ->get();
         return($order);
+    }
+
+    public function create_Order($id_user){
+        $this->user_id=$id_user;
+        $this->save();
+        $order_id=$this->id;
+        return $order_id;
+    }
+    public function get_Order_User($user_id){
+        $order=DB::table('order_products')
+        ->join('products','order_products.products_id','=','products.id')
+        ->join('orders','order_products.order_id','=','orders.id')
+        ->where('user_id',$user_id)
+        ->get();
+        return($order);
+    }
+    public function delete_Order($id){
+        $order=DB::table('orders')
+        ->where('id',$id)
+        ->delete();
+        $order=DB::table('order_products')
+        ->where('order_id',$id)
+        ->delete();
+        return($order);
+    }
+
+    public function search($key){
+        $order=DB::table('orders')
+        ->join('users','orders.user_id','=','users.id')
+        ->select(['orders.*','users.fullname','users.address','users.phone'])
+        ->where('fullname','like','%'.$key.'%')
+        ->get();
+        return($order);
+
     }
 }

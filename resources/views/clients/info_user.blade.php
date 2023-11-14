@@ -9,8 +9,8 @@
 @endif
 @if (!empty($user_data))
     <div class="container mt-3 d-flex justify-content-center">
-       <div class="info-group">
-            <div>
+       <div class="info-group border border-dark">
+            <div class="border-bottom-2 border-dark">
                 <div class="avt-block">
                     <i class="fa-solid avt fa-user"></i>
                 </div>
@@ -18,19 +18,23 @@
                     <h3>{{$user_data->fullname}}</h3>
                 </div>
             </div>
-            <div class="justify-content-center">
-                <div>Email: {{$user_data->email}}</div>
-                <div>Địa chỉ: {{$user_data->address}}</div>
-                <div>Điện thoại: {{$user_data->phone}}</div>
-                <div>
-                    <a class="text-decoration-none" href="{{ route('taikhoan.getuser') }}">Chỉnh sửa thông tin</a>
+            <div class="justify-content-center info_center">
+                <h4 class="text-align-center">Thông tin cá nhân</h4>
+                <div class="info">
+                    <ul>
+                        <li>Email: {{$user_data->email}}</li>
+                        <li>Địa chỉ: {{$user_data->address}}</li>
+                        <li>Điện thoại: 0{{$user_data->phone}}</li>
+                    </ul>
                 </div>
-                <div>
-                    <a class="text-decoration-none" href="{{route('showorder')}}">Đơn hàng</a>
+                <h4 class="mt-2">Tùy chỉnh</h4>
+                <div class="info">
+                    <ul>
+                        <li><a class="text-decoration-none" href="{{ route('taikhoan.getuser') }}">Chỉnh sửa thông tin</a></li>
+                        <li><a class="text-decoration-none" href="{{route('showorder')}}">Đơn hàng</a></li>
+                        <li> <a class="text-decoration-none " href="{{route('logout')}}">Đăng xuất</a></li>
+                    </ul>
                 </div>
-                <div>
-                    <a class="text-decoration-none " href="{{route('logout')}}">Đăng xuất</a>
-            </div>
             </div>
         </div>
     </div>

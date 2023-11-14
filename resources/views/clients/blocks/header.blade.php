@@ -24,7 +24,7 @@
         </div>
         <!-- /tìm kiếm/ -->  
         <div class="justify-content-center search_group">
-            <form action="" method="post">
+            <form action="{{route('home')}}" method="post">
                 <div class="">
                     <div class="align-items-center">
                         <div class="input-group input-group1 mt-2 bg-light">

@@ -32,10 +32,6 @@
                             <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                                 <strong>Uy
                                     tín</strong>!</p>
-                            <div class="form-group">
-                                <label for="soluong">Số lượng đặt mua:</label>
-                                <input style="width:100px;" type="number" class="form-control" id="soluong" name="soluong">
-                            </div>
                             <div class="action">
                                 <a class="add-to-cart btn btn-primary mt-3" id="btnThemVaoGioHang" href="{{route('addcart',$product->id)}}">Thêm vào giỏ hàng</a>
                             </div>
