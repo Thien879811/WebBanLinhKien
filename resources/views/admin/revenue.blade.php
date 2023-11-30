@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @section('title')
-    Đơn hàng
+    Doanh thu
 @endsection
 @section('content')
 
     <div class="container mt-5">
-        <h3>Đơn hàng</h3>
+        <h3>Doanh thu</h3>
         @if(session('alert'))
             <div class="alert alert-info">
             {{session('alert')}}
@@ -28,10 +28,15 @@
             </form>
         </nav>
 
-        <div>    
-            @foreach ($undelivered as $item)
-                <p>Số lượng đơn hàng chưa giao: {{$item->count}}</p>
+        <div>
+            @foreach ($soluong as $item)
+            <p>Số lượng sản phẩm trong kho: {{$item->count}}</p>
             @endforeach
+            
+            @foreach ($delivered as $item)
+                <p>Số lượng đơn hàng đã giao: {{$item->count}}</p>
+            @endforeach
+        
         </div>
 
         <table class="table">
@@ -48,14 +53,15 @@
             </thead>
             <tbody>
                 @php
-                    $sum=0;
-                    $stt=1
+                    $stt=1;
+                    $tong=0;
                 @endphp
                 @foreach ($data as $item=> $value)
                 <tr>
                     <th scope="row">{{$stt}}</th>
                     <th>{{$value->fullname}}</th>
                         @php
+                            $sum=0;
                             $stt=$stt+1
                         @endphp
                     <th>
@@ -98,6 +104,9 @@
                         </ul>
                     </th>
                     <th>
+                        @php
+                            $tong=$tong+$sum;
+                        @endphp
                         {{$sum}}
                     </th>
                     <th>
@@ -114,6 +123,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div>
+            <h4>Tổng doanh thu: {{$tong}} vnd</h4>
+        </div>
     </div>
 @endsection
 @section('css')

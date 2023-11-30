@@ -11,6 +11,9 @@
             <a class="nav-link" href="{{route('admin.order')}}">Đơn hàng</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.revenue')}}">Doanh thu</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{route('admin.user')}}">Tài khoản người dùng</a>
         </li>
         <li class="nav-item">

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use App\Models\Order_Product;
+use App\Models\Products;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 class Order extends Model
@@ -40,6 +41,7 @@ class Order extends Model
         $order=DB::table('orders')
         ->join('users','orders.user_id','=','users.id')
         ->select(['orders.*','users.fullname','users.address','users.phone'])
+        ->where('status','=','0')
         ->get();
         return($order);
     }
@@ -81,6 +83,46 @@ class Order extends Model
         ->where('fullname','like','%'.$key.'%')
         ->get();
         return($order);
+    }
 
+    public function  orderDelivered(){
+        $order = DB::table('orders')
+             ->select(DB::raw('count(*) as count, status'))
+             ->where('status', '=', 1)
+             ->groupBy('status')
+             ->get();
+             return $order;
+    }
+
+    public function  orderUnDelivered(){
+        $order = DB::table('orders')
+             ->select(DB::raw('count(*) as count, status'))
+             ->where('status', '=', 0)
+             ->groupBy('status')
+             ->get();
+        return $order;
+    }
+     
+    public function getOrderUserDelivered(){
+        $order=DB::table('orders')
+        ->join('users','orders.user_id','=','users.id')
+        ->select(['orders.*','users.fullname','users.address','users.phone'])
+        ->where('status','=','1')
+        ->get();
+        return($order);
+    }
+    public function getOrderProductDelivered(){
+        $order=DB::table('order_products')
+        ->join('products','order_products.products_id','=','products.id')
+        ->get();
+        return($order);
+    }
+
+    public function  numberProduct(){
+        $number = DB::table('products')
+            ->select(DB::raw('sum(product_quantity) as count'))
+            ->get();
+        return $number;
     }
 }
+

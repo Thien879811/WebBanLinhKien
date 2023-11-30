@@ -94,6 +94,8 @@ Route::middleware('checkadmin')->group(function(){
         Route::get('/thu-quyen/{id}',[UserController::class,'not_admin'])->name('not_admin');
         //tìm kiếm người dùng
         Route::post('/tai-khoan',[UserController::class,'search_user']);
+        //d0anh thu
+        Route::get('/doanh_thu',[OrderController::class,'revenueOrder'])->name('revenue');
 
     });
 });

@@ -20,6 +20,7 @@ class Products extends Model
         'product_name',
         'product_type',
         'price',
+        'product_quantity',
         'images'
     ];
    // public $timestamps = false;
@@ -36,10 +37,11 @@ class Products extends Model
         $data=DB::table('fillable')->where('type_id',$id)->get();
         return $data;
     }
-    public function addProduct($product_name,$product_type,$price,$image){
+    public function addProduct($product_name,$product_type,$price,$quantity,$image){
         $this->product_name=$product_name;
         $this->product_type=$product_type;
         $this->price=$price;
+        $this->product_quantity=$quantity;
         $this->images=$image;
         $this->save();
         $data=$this->id;

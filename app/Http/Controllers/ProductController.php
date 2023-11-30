@@ -33,8 +33,7 @@ class ProductController extends Controller
     public function addProduct(ProductRequest $request){
         $image=time().'.'.$request->image->extension();
         $request->image->move(public_path('images'),$image);
-        $id_product=$this->product->addProduct($request->product_name,$request->product_type,$request->price,$image);
-        $id_product=1;
+        $id_product=$this->product->addProduct($request->product_name,$request->product_type,$request->price,$request->product_quantity,$image);
         $fill=$this->product->getFillabe($request->product_type);
         return view('admin.add_detail',compact('fill','id_product'));
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Order_Product;
+use App\Models\Products;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,19 +17,20 @@ class OrderController extends Controller
         return redirect()->route('showcart');
     }
     public function addOrder(Request $request){
-        $user_id=Auth::id();
-        $order=new Order;
-        $order_product=new Order_Product;
-        $data=$request->selceted_add;
-        $order_id=$order->create_Order($user_id);
         $user=new User;
         if($user->checkInfo()==1){
+            $user_id=Auth::id();
+            $order=new Order;
+            $order_product=new Order_Product;
+            $data=$request->selceted_add;
+            $order_id=$order->create_Order($user_id);
             if($data != null ){
                 foreach ($data as $key => $value) {
                     $product_id=Cart::find($value)->products_id;
                     $quantity=Cart::find($value)->quantity;
                     $data_product=Cart::find($value)->getProduct;
                     $total = $quantity *  $data_product->price;
+                    Cart::find($value)->delete();
                     $order_product->createOrderProduct($order_id,$product_id,$quantity, $total);
                 }
                 return redirect()->route('showcart')->with('alert','Đặt hàng thành công !');
@@ -41,7 +43,8 @@ class OrderController extends Controller
         $order=new Order;
         $data=$order->getOrderUser();
         $product=$order->getOrderProduct();
-        return view('admin.order',compact('data','product'));
+        $undelivered=$order->orderUnDelivered();
+        return view('admin.order',compact('data','product','undelivered'));
     }
     public function getOrderUser(){
         $user=Auth::id();
@@ -66,5 +69,14 @@ class OrderController extends Controller
         $data=$order->search($key);
         $product=$order->getOrderProduct();
         return view('admin.order',compact('data','product'));
+    }
+
+    public function revenueOrder(){
+        $order=new Order;
+        $data=$order->getOrderUserDelivered();
+        $product=$order->getOrderProductDelivered();
+        $delivered=$order->orderDelivered();
+        $soluong=$order->numberProduct();
+        return view('admin.revenue',compact('data','product','delivered','soluong'));
     }
 }

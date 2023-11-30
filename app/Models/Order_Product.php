@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Products;
+
 
 class Order_Product extends Model
 {
@@ -17,6 +19,9 @@ class Order_Product extends Model
         $order->quantity=$quantity;
         $order->total=$total;
         $order->save();
+        $product=Products::find($product_id);
+        $product->product_quantity=$product->product_quantity-$quantity;
+        $product->save();
     }
     
     public function getProductOrder():BelongsToMany{

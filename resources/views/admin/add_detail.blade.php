@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Thêm chi tiết
+@endsection
 @section('content')
     <div class="container m-auto">
         @if(!empty($fill) && !empty($id_product))
@@ -17,4 +20,11 @@
         </form>
     @endif
     </div>
+@endsection
+@section('css')
+    <style>
+        .btn{
+            float: right;
+        }
+    </style>
 @endsection

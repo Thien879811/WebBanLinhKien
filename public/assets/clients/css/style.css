@@ -1,3 +1,4 @@
+
 /* header style */
 header{
     display: block;
@@ -88,6 +89,7 @@ header{
 
 /* dang nhap */
 
+
 .login-bg{
     width: 100%;
     display: flex;
@@ -132,6 +134,4 @@ header{
 .info_center .info{
     margin-left: 120px;
 }
-@media only screen and (max-width: 600px) {
 
-}

@@ -18,7 +18,11 @@
                     <img src="{{asset('images')}}/{{$key->images}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5  class="card-title">{{$key->product_name}}</h5>
-                        <p class="card-text">{{$key->price}}</p>
+                        @php
+                        $price = number_format($key->price, 0, ',', '.') . ' vnđ'
+                        @endphp
+                        <p class="card-text">Số lượng sản phẩm còn lại: {{$key->product_quantity}}</p>
+                        <p class="card-text">{{$price}}</p>
                         <a href="{{route('admin.edit_product',$key->id)}}" class="btn btn-primary">Chỉnh sửa</a>
                     </div>
                 </div>
@@ -38,5 +42,6 @@
         .card img{
             height: 350px;
         }
+        
     </style>
 @endsection

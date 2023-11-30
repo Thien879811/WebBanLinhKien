@@ -34,7 +34,11 @@
                     <img src="{{asset('images')}}/{{$key->images}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{$key->product_name}}</h5>
-                        <p class="card-text">{{$key->price}}</p>
+                        <p class="card-text">Số lượng còn lại: {{$key->product_quantity}}</p>
+                        @php
+                            $price = number_format($key->price, 0, ',', '.') . ' vnđ'
+                        @endphp
+                        <p class="card-text">{{$price}}</p>
                         <a href="{{ route('detail',$key->id)}}" class="btn btn-primary">Xem chi tiết</a>
                     </div>
                 </div>

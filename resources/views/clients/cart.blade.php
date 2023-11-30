@@ -7,7 +7,7 @@
     <div class="alert alert-info">{{session('alert')}}</div>
 @endif
 @if (!empty($product))
-    <div class="container">
+    <div class="container mb-3 detail">
         <form action="{{route('mua-hang')}}" method="post">
             <table class="table">
                 <thead>
@@ -42,15 +42,15 @@
 
                 <div class="buttons_added col-2 m-auto">
     
-                    <button class="plus is-form d-qty">
-                        <a class="text-decoration-none" href="{{route('giam',$key->id)}}">-</a>
-                    </button>
+                    <div class="plus is-form d-qty">
+                        <a class="text-decoration-none text-light m-auto" href="{{route('giam',$key->id)}}">-</a>
+                    </div>
     
                     <input class="input-qty" max="10" min="{{$key->quantity}} "type="" class="quantity" id="quantity" value="{{$key->quantity}}"/>
                     
-                    <button class="plus is-form d-qty" >
-                        <a class="text-decoration-none" href="{{route('tang',$key->id)}}">+</a>
-                    </button>
+                     <div class="plus is-form d-qty" >
+                        <a class="text-decoration-none text-light m-auto" href="{{route('tang',$key->id)}}">+</a>
+                    </div>
                 
                 </div>
 
@@ -74,10 +74,27 @@
 @section('css')
     <style>
         .d-qty{
+            display: flex;
             width:30px;
+            height: 25px;
+            border: 1px black solid;
+            margin: 2px;
+            justify-content: center;
         }
         .input-qty{
-            width:50px
+            width:50px;
+            height: 27px;
+            
+        }
+        .buttons_added{
+            display: flex;
+        }
+        .mua-hang{
+            margin-bottom: 100px;
+            float: right;
+        }
+        .detail{
+            height: 500px;
         }
     </style>
 @endsection

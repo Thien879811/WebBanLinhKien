@@ -55,7 +55,8 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 @if (session('fullname'))
-                <div class="mb-2">{{session('fullname')}}</div>
+                <div class="m-2">{{session('fullname')}}</div>
+                <li><a class="text-decoration-none dropdown-item" href="{{route('showorder')}}">Đơn hàng</a></li>
                 <li><a class="text-decoration-none dropdown-item" href="{{route('taikhoan.') }}">Tài khoản</a></li>
                 <li><a class="text-decoration-none dropdown-item" href="{{route('logout')}}">Đăng xuất</a></li>
                 <li>

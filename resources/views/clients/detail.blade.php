@@ -28,13 +28,18 @@
                                     <span class="fa fa-star"></span>
                                 </div>
                             </div>
-                            <h4 class="price">Giá hiện tại: <span>{{$product->price}}</span></h4>
+                            @php
+                            $price = number_format($product->price, 0, ',', '.') . ' vnđ'
+                            @endphp
+                            <h4 class="price">Giá hiện tại: <span>{{$price}}</span></h4>
                             <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                                 <strong>Uy
                                     tín</strong>!</p>
+                            @if(!session('admin'))
                             <div class="action">
                                 <a class="add-to-cart btn btn-primary mt-3" id="btnThemVaoGioHang" href="{{route('addcart',$product->id)}}">Thêm vào giỏ hàng</a>
                             </div>
+                            @endif
                         </div>
 
                     </div>
